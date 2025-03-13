@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"lib": [
+            "ESNext"
+        ],
+		"target": "ESNext",
+		"module": "commonjs",
+		"declaration": true,
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"skipLibCheck": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"typeRoots": [
+            "./node_modules/@types",
+            "./typings/"
+        ]
+	},
+	"exclude": [
+        "node_modules",
+        "package.json",
+        "build",
+		"test",
+    ]
+}

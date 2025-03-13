@@ -1,0 +1,22 @@
+{
+    "name": "@isluny/bitfields",
+    "version": "1.0.3",
+    "description": "A basic package for generating card decks and managing basic usage logic.",
+    "main": "dist/index.js",
+    "repository": "https://github.com/IsLunyStudios/deck-cards",
+    "author": "JVOPINHO",
+    "license": "MIT",
+    "keywords": ["deck", "cards", "playing", "poker", "game"],
+    "devDependencies": {
+      "@types/node": "^20.12.13",
+      "@typescript-eslint/eslint-plugin": "6.0.0",
+      "@typescript-eslint/parser": "6.0.0",
+      "eslint": "8.19.0",
+      "rimraf": "^5.0.7",
+      "typescript": "^5.4.5"
+    },
+    "scripts": {
+      "build": "rimraf dist && tsc"
+    }
+  }
+  
