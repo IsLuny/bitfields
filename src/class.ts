@@ -16,7 +16,7 @@ export class Bitfield<Flags extends FlagsRecord = FlagsRecord> {
 
 	public constructor(...bits: Bit<Flags>[]) {
 		const object = (this.constructor as typeof Bitfield)
-		const resolve: (...bit: Bit<Flags>[]) => bigint = object.resolve.bind(this.constructor)
+		const resolve: (...bit: Bit<Flags>[]) => bigint = object._resolve.bind(this.constructor)
 
 		this.bits = resolve(bits.length ? bits as Bit<Flags> : object.defaulBits)
 
@@ -92,12 +92,16 @@ export class Bitfield<Flags extends FlagsRecord = FlagsRecord> {
 		return Object.values(Bitfield.Flags as FlagsRecord).reduce((all, p) => all | p, 0n)
 	}
 
-	static resolve<Flags extends FlagsRecord = FlagsRecord>(...bit: Bit<Flags>[]): bigint {
+	static resolve<Flags extends FlagsRecord = FlagsRecord>(..._bit: Bit<Flags>[]): bigint {
+		return this._resolve<Flags>(_bit.flat(Infinity) as Bit<Flags>)
+	}
+
+	private static _resolve<Flags extends FlagsRecord = FlagsRecord>(bit: Bit<Flags>): bigint {
 		const { Flags } = this
 		
 		if(typeof bit === 'bigint') return bit
 		if(bit instanceof Bitfield) return bit.bits
-		if(Array.isArray(bit)) return bit.map(p => this.resolve(p)).reduce((prev, p) => prev | p)
+		if(Array.isArray(bit)) return bit.map(p => this._resolve(p)).reduce((prev, p) => prev | p, 0n)
 		if(typeof bit === 'string' && typeof Flags[bit] !== 'undefined') return Flags[bit]
 		throw new Error('BitField Invalid: ' + bit)
 	}
