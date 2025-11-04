@@ -81,7 +81,7 @@ class Bitfield {
 	}
     
 	static resolve(..._bit) {
-		return this._resolve<Flags>(_bit.flat(Infinity))
+		return this._resolve(_bit.flat(Infinity))
 	}
     
 	static _resolve(bit) {
