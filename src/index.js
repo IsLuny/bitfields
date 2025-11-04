@@ -1,6 +1,7 @@
 class Bitfield {
 	constructor(...bits) {
-		const resolve = this.constructor._resolve.bind(this.constructor)
+		const object = this.constructor
+		const resolve = object._resolve.bind(this.constructor)
     
 		this.bits = resolve(bits.length ? bits : object.defaulBits)
     
