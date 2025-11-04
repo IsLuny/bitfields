@@ -100,8 +100,8 @@ class Bitfield {
 }
 
 module.exports = Bitfield
-exports.Bitfield = Bitfield
-exports.bit = (flag) => {
+module.exports.Bitfield = Bitfield
+module.exports.bit = (flag) => {
 	flag = typeof flag === 'bigint' ? flag : BigInt(flag)
 	return 1n << flag
 }
